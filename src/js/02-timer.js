@@ -37,25 +37,25 @@ const options = {
 
 flatpickr(refs.inputDate, options);
 
-refs.btnStart.addEventListener('click', onStartCountdown);
+refs.btnStart.addEventListener('click', onStartCountdownTimer);
 
-function onStartCountdown() {
+function onStartCountdownTimer() {
   const timerOnStart = setInterval(() => {
     refs.btnStart.setAttribute('disabled', true);
     refs.inputDate.setAttribute('disabled', true);
     if (remainingTime >= 1000) {
       remainingTime -= 1000;
-      timer(remainingTime);
+      time(remainingTime);
     } else {
       clearInterval(timerOnStart);
-      refs.btnStart.removeEventListener('click', onStartCountdown);
+      refs.btnStart.removeEventListener('click', onStartCountdownTimer);
       refs.btnStart.setAttribute('disabled', true);
       refs.inputDate.removeAttribute('disabled');
     }
   }, 1000);
 }
 
-function timer(remainingTime) {
+function time(remainingTime) {
   const { days, hours, minutes, seconds } = convertMs(remainingTime);
   refs.days.textContent = days;
   refs.hours.textContent = hours;

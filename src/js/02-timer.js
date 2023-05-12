@@ -22,13 +22,15 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     const selectedDate = selectedDates[0];
-    const currentDate = Date.now();
+    const currentDate = new Date();
     if (selectedDate <= currentDate) {
       // window.alert('Please choose a date in the future');
       Notiflix.Notify.failure('Please choose a date in the future');
     } else {
       refs.btnStart.removeAttribute('disabled');
       remainingTime = selectedDate - currentDate;
+      // console.log('selected date: ' + selectedDate);
+      // console.log('current date: ' + currentDate);
     }
   },
 };

@@ -22,6 +22,25 @@ form.addEventListener('submit', event => {
   const step = parseInt(event.target.elements.step.value);
   const amount = parseInt(event.target.elements.amount.value);
 
+  if (delay <= 0 || isNaN(delay)) {
+    // console.log(`Invalid delay value: ${delay}`);
+    Notiflix.Notify.warning(`Invalid delay value: ${delay}`);
+    return;
+  }
+
+  if (step <= 0 || isNaN(step)) {
+    // console.log(`Invalid step value: ${step}`);
+    Notiflix.Notify.warning(`Invalid delay value: ${step}`);
+    return;
+  }
+
+  if (amount <= 0 || isNaN(amount)) {
+    // console.log(`Invalid amount value: ${amount}`);
+    Notiflix.Notify.warning(`Invalid delay value: ${amount}`);
+
+    return;
+  }
+
   let currentDelay = delay;
   for (let i = 1; i <= amount; i++) {
     createPromise(i, currentDelay).then(

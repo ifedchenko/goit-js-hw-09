@@ -40,14 +40,14 @@ flatpickr(refs.inputDate, options);
 refs.btnStart.addEventListener('click', onStartCountdownTimer);
 
 function onStartCountdownTimer() {
-  const timerOnStart = setInterval(() => {
+  const timerInit = setInterval(() => {
     refs.btnStart.setAttribute('disabled', true);
     refs.inputDate.setAttribute('disabled', true);
     if (remainingTime >= 1000) {
       remainingTime -= 1000;
-      time(remainingTime);
+      timeOnStart(remainingTime);
     } else {
-      clearInterval(timerOnStart);
+      clearInterval(timerInit);
       refs.btnStart.removeEventListener('click', onStartCountdownTimer);
       refs.btnStart.setAttribute('disabled', true);
       refs.inputDate.removeAttribute('disabled');
@@ -55,7 +55,7 @@ function onStartCountdownTimer() {
   }, 1000);
 }
 
-function time(remainingTime) {
+function timeOnStart(remainingTime) {
   const { days, hours, minutes, seconds } = convertMs(remainingTime);
   refs.days.textContent = days;
   refs.hours.textContent = hours;
@@ -85,3 +85,26 @@ function convertMs(ms) {
 // console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
 // console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
 // console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
+
+// const timer = {
+//   intervalId: null,
+//   isActive: false,
+
+//   start() {
+//     if (this.isActive) {
+//       return;
+//     }
+//     const startTime = new Date();
+//     this.isActive = true;
+//     this.intervalId = setInterval(() => {
+//       const currentTime = new Date();
+//       const timeDiff = currentTime - startTime;
+//       time(timeDiff);
+//     }, 1000);
+//   },
+
+//   stop() {
+//     clearInterval(this.intervalId);
+//     this.isActive = false;
+//   },
+// };

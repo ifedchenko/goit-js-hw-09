@@ -1,27 +1,29 @@
-const btnStartChangeColor = document.querySelector('[data-start]');
-const btnStopChangeColor = document.querySelector('[data-stop]');
+const refs = {
+  btnStartChangeColor: document.querySelector('[data-start]'),
+  btnStopChangeColor: document.querySelector('[data-stop]'),
+};
 
-btnStartChangeColor.addEventListener('click', onClickStartChangeColor);
+refs.btnStartChangeColor.addEventListener('click', onClickStartChangeColor);
 
-btnStopChangeColor.setAttribute('disabled', true);
+refs.btnStopChangeColor.setAttribute('disabled', true);
 
-btnStopChangeColor.addEventListener('click', onClickStopChangeColor);
+refs.btnStopChangeColor.addEventListener('click', onClickStopChangeColor);
 
-let colorChangeInterval;
+let colorChangeInterval = null;
 
 function onClickStartChangeColor() {
   const body = document.querySelector('body');
   colorChangeInterval = setInterval(() => {
     body.style.backgroundColor = getRandomHexColor();
   }, 1000);
-  btnStartChangeColor.setAttribute('disabled', true);
-  btnStopChangeColor.removeAttribute('disabled');
+  refs.btnStartChangeColor.setAttribute('disabled', true);
+  refs.btnStopChangeColor.removeAttribute('disabled');
 }
 
 function onClickStopChangeColor() {
   clearInterval(colorChangeInterval);
-  btnStartChangeColor.removeAttribute('disabled');
-  btnStopChangeColor.setAttribute('disabled', true);
+  refs.btnStartChangeColor.removeAttribute('disabled');
+  refs.btnStopChangeColor.setAttribute('disabled', true);
 }
 
 function getRandomHexColor() {

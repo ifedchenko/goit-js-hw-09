@@ -42,6 +42,7 @@ form.addEventListener('submit', event => {
   }
 
   let currentDelay = delay;
+
   for (let i = 1; i <= amount; i++) {
     createPromise(i, currentDelay).then(
       ({ position, delay }) => {

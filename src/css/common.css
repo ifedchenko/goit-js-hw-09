@@ -36,3 +36,14 @@ img {
 .label {
   text-transform: uppercase;
 }
+
+.form label {
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.form button {
+  margin-top: 10px;
+}

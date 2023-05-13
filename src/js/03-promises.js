@@ -22,21 +22,18 @@ form.addEventListener('submit', event => {
   const step = parseInt(event.target.elements.step.value);
   const amount = parseInt(event.target.elements.amount.value);
 
-  if (delay <= 0 || isNaN(delay)) {
-    // console.log(`Invalid delay value: ${delay}`);
-    Notiflix.Notify.warning(`Invalid delay value: ${delay}`);
-    return;
-  }
+  if (delay < 0 || step < 0 || amount <= 0) {
+    if (delay < 0) {
+      Notiflix.Notify.warning(`Invalid delay value: ${delay}`);
+    }
 
-  if (step <= 0 || isNaN(step)) {
-    // console.log(`Invalid step value: ${step}`);
-    Notiflix.Notify.warning(`Invalid delay value: ${step}`);
-    return;
-  }
+    if (step < 0) {
+      Notiflix.Notify.warning(`Invalid step value: ${step}`);
+    }
 
-  if (amount <= 0 || isNaN(amount)) {
-    // console.log(`Invalid amount value: ${amount}`);
-    Notiflix.Notify.warning(`Invalid delay value: ${amount}`);
+    if (amount <= 0) {
+      Notiflix.Notify.warning(`Invalid amount value: ${amount}`);
+    }
 
     return;
   }
